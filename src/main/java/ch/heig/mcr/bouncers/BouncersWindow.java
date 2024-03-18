@@ -21,12 +21,12 @@ public class BouncersWindow implements Displayer {
     private BouncersWindow() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
-        frame.setPreferredSize(frame.getSize());
         frame.setVisible(true);
 
         contentPane = new GraphicsPanel();
         frame.setContentPane(contentPane);
+
+        frame.pack();
     }
 
     @Override

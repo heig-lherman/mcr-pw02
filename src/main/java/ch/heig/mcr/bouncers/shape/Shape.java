@@ -65,6 +65,6 @@ public abstract class Shape {
         if (position.y() + height >= window.getHeight()) {
             normal = normal.add(Vec2d.Y_AXIS.invert());
         }
-        return normal;
+        return normal.normalize();
     }
 }
