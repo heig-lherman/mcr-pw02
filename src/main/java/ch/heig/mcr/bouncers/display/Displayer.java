@@ -1,4 +1,4 @@
-package ch.heig.mcr.bouncers;
+package ch.heig.mcr.bouncers.display;
 
 import java.awt.*;
 
@@ -13,4 +13,8 @@ public interface Displayer {
     void repaint();
 
     void setTitle(String title);
+
+    static Displayer getInstance() {
+        return DisplayerSingleton.getInstance();
+    }
 }

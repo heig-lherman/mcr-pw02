@@ -1,32 +1,26 @@
-package ch.heig.mcr.bouncers;
+package ch.heig.mcr.bouncers.display;
 
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import javax.swing.*;
 
 public class BouncersWindow implements Displayer {
 
-    private static final class InstanceHolder {
-        private static final BouncersWindow INSTANCE = new BouncersWindow();
-    }
-
-    public static BouncersWindow getInstance() {
-        return InstanceHolder.INSTANCE;
-    }
-
     private final JFrame frame;
     private final GraphicsPanel contentPane;
 
-    private BouncersWindow() {
+    protected BouncersWindow() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
 
         contentPane = new GraphicsPanel();
         frame.setContentPane(contentPane);
 
         frame.pack();
+        frame.setVisible(true);
     }
 
     @Override
@@ -61,14 +55,10 @@ public class BouncersWindow implements Displayer {
         public GraphicsPanel() {
             setSize(800, 800);
             setPreferredSize(getSize());
-            addComponentListener(new ResizeListener());
-            clearBuffer();
-        }
+            setBackground(Color.WHITE);
 
-        @Override
-        public void repaint() {
-            super.repaint();
-            clearBuffer();
+            resetBuffer();
+            addComponentListener(new ResizeListener());
         }
 
         @Override
@@ -77,18 +67,25 @@ public class BouncersWindow implements Displayer {
 
             if (buffer != null) {
                 g.drawImage(buffer, 0, 0, getWidth(), getHeight(), this);
+                clear();
             }
         }
 
-        private void clearBuffer() {
-            buffer = createImage(getWidth(), getHeight());
+        private void clear() {
+            buffer.getGraphics().clearRect(0, 0, getWidth(), getHeight());
+            buffer.getGraphics().setColor(Color.WHITE);
+            buffer.getGraphics().fillRect(0, 0, getWidth(), getHeight());
+        }
+
+        private void resetBuffer() {
+            buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
         }
 
         private class ResizeListener extends ComponentAdapter {
 
             @Override
             public void componentResized(ComponentEvent e) {
-                clearBuffer();
+                resetBuffer();
             }
         }
     }

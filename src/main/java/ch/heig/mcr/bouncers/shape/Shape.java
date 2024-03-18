@@ -1,7 +1,7 @@
 package ch.heig.mcr.bouncers.shape;
 
-import ch.heig.mcr.bouncers.BouncersWindow;
-import ch.heig.mcr.bouncers.Displayer;
+import ch.heig.mcr.bouncers.display.BouncersWindow;
+import ch.heig.mcr.bouncers.display.Displayer;
 import ch.heig.mcr.bouncers.util.Vec2d;
 import java.awt.*;
 
@@ -28,7 +28,7 @@ public abstract class Shape {
     protected abstract void drawShape(Graphics2D graphics);
 
     public final void tick(double deltaTime) {
-        Displayer window = BouncersWindow.getInstance();
+        Displayer window = Displayer.getInstance();
 
         position = position.add(velocity.scale(deltaTime));
         if (!isWithinBounds(window)) {

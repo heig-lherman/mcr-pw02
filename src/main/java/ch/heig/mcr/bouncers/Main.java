@@ -1,5 +1,8 @@
 package ch.heig.mcr.bouncers;
 
+import ch.heig.mcr.bouncers.display.BouncersWindow;
+import ch.heig.mcr.bouncers.display.Displayer;
+import ch.heig.mcr.bouncers.display.DisplayerSingleton;
 import ch.heig.mcr.bouncers.shape.Circle;
 import ch.heig.mcr.bouncers.shape.Shape;
 import ch.heig.mcr.bouncers.shape.Square;
@@ -13,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         if (args.length < 2) {
             System.out.println("Usage: java -jar bouncers.jar <nbSquares> <nbCircles>");
             System.exit(1);
@@ -24,7 +27,7 @@ public class Main {
         int nbSquares = Integer.parseInt(args[0]);
         int nbCircles = Integer.parseInt(args[1]);
 
-        Displayer window = BouncersWindow.getInstance();
+        var window = DisplayerSingleton.registerInstance(BouncersWindow.class);
         List<Shape> shapes = new ArrayList<>(nbSquares + nbCircles);
 
         window.setTitle("Bouncers");
@@ -54,6 +57,6 @@ public class Main {
             }
 
             window.repaint();
-        }, 0, 1, TimeUnit.MILLISECONDS);
+        }, 0, 40, TimeUnit.MILLISECONDS).get();
     }
 }
