@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="1 square [run]" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="ch.heig.mcr.bouncers.Main" />
+    <module name="bouncers" />
+    <option name="PROGRAM_PARAMETERS" value="1 0" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
