@@ -3,8 +3,8 @@ package ch.heig.mcr.bouncers.display;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 import javax.swing.*;
 
 public class BouncersWindow implements Displayer {
@@ -48,6 +48,11 @@ public class BouncersWindow implements Displayer {
         frame.setTitle(title);
     }
 
+    @Override
+    public void addKeyListener(KeyListener kl) {
+        frame.addKeyListener(kl);
+    }
+
     private static class GraphicsPanel extends JPanel {
 
         private Image buffer;
@@ -65,8 +70,11 @@ public class BouncersWindow implements Displayer {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
 
+            Graphics2D graph = (Graphics2D) g;
+            graph.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
             if (buffer != null) {
-                g.drawImage(buffer, 0, 0, getWidth(), getHeight(), this);
+                graph.drawImage(buffer, 0, 0, getWidth(), getHeight(), this);
                 clear();
             }
         }

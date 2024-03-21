@@ -8,13 +8,12 @@ public final class DisplayerSingleton {
         throw new IllegalAccessException("This class should not be instantiated");
     }
 
-    public static Displayer registerInstance(Class<? extends Displayer> impl) throws Exception {
+    public static void registerInstance(Class<? extends Displayer> impl) throws Exception {
         if (instance != null) {
             throw new Exception("Instance already registered");
         }
 
         instance = impl.getDeclaredConstructor().newInstance();
-        return instance;
     }
 
     public static Displayer getInstance() {
