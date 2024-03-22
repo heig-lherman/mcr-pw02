@@ -5,14 +5,20 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
+/**
+ * Abstract class for a square.
+ */
 abstract class Square extends AbstractShape {
 
     public Square(Random random) {
         super(random);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public Shape getShape() {
+    public final Shape getShape() {
         return new Rectangle2D.Double(getPosition().x(), getPosition().y(), getSize(), getSize());
     }
 }

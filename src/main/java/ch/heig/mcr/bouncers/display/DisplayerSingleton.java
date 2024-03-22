@@ -1,5 +1,8 @@
 package ch.heig.mcr.bouncers.display;
 
+/**
+ * Holder for any kind of {@link Displayer} instance, to be used as a singleton.
+ */
 public final class DisplayerSingleton {
 
     private static Displayer instance;

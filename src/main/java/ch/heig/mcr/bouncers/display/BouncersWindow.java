@@ -7,6 +7,9 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
+/**
+ * Swing/AWT implementation of the displayer contract.
+ */
 public class BouncersWindow implements Displayer {
 
     private final JFrame frame;
@@ -23,38 +26,60 @@ public class BouncersWindow implements Displayer {
         frame.setVisible(true);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public int getWidth() {
         return contentPane.getWidth();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public int getHeight() {
         return contentPane.getHeight();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public Graphics2D getGraphics() {
         return (Graphics2D) contentPane.buffer.getGraphics();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void repaint() {
         contentPane.repaint();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void setTitle(String title) {
         frame.setTitle(title);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void addKeyListener(KeyListener kl) {
         frame.addKeyListener(kl);
     }
 
+    /**
+     * Main content pane for the displayer, handles drawing and resizing.
+     */
     private static class GraphicsPanel extends JPanel {
 
+        // This images serves as a buffer to handle content updates on a frame-by-frame basis.
         private Image buffer;
 
         public GraphicsPanel() {

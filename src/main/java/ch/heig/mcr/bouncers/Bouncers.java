@@ -14,6 +14,15 @@ import java.util.List;
 import java.util.Random;
 import javax.swing.*;
 
+/**
+ * Main class for the bouncers application, registers the main displayer instance and
+ * starts the main loop inside AWT's event queue.
+ *
+ * @author Loïc Herman
+ * @author Massimo Stefani
+ * @version 1.0
+ * @since 2024-02-22
+ */
 public class Bouncers {
 
     private final List<Bouncable> bouncers = new LinkedList<>();
@@ -24,6 +33,9 @@ public class Bouncers {
         Displayer.getInstance().addKeyListener(new BouncableActions());
     }
 
+    /**
+     * Main loop for the bouncers application, moves and draws all bouncers on the screen.
+     */
     public void run() {
         Displayer.getInstance().setTitle("Bouncers");
         new Timer(10, event -> {
@@ -43,6 +55,11 @@ public class Bouncers {
         }
     }
 
+    /**
+     * KeyAdapter implementation for the bouncers application,
+     * handles key events to create new shapes,
+     * clear the screen or exit the application.
+     */
     private class BouncableActions extends KeyAdapter {
 
         private final ShapeFactory fillFactory = new FilledShapeFactory();
@@ -67,6 +84,12 @@ public class Bouncers {
         }
     }
 
+    /**
+     * Main method for the bouncers application, starts the application.
+     *
+     * @param args command line arguments
+     * @throws Exception if an error occurs
+     */
     public static void main(String[] args) throws Exception {
         SwingUtilities.invokeLater(new Bouncers()::run);
     }

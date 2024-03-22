@@ -5,6 +5,9 @@ import ch.heig.mcr.bouncers.render.Renderer;
 import ch.heig.mcr.bouncers.util.Vec2d;
 import java.util.Random;
 
+/**
+ * Abstract drawable shape with bouncing capabilities.
+ */
 public abstract class AbstractShape implements Bouncable {
 
     private final int size;
@@ -33,8 +36,15 @@ public abstract class AbstractShape implements Bouncable {
         return size;
     }
 
+    /**
+     * Get the renderer for the shape.
+     * @return an instance of the renderer
+     */
     protected abstract Renderer getRenderer();
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public final void draw() {
         getRenderer().display(
@@ -43,6 +53,9 @@ public abstract class AbstractShape implements Bouncable {
         );
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public final void move() {
         Displayer window = Displayer.getInstance();
