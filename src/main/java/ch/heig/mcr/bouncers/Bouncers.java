@@ -18,6 +18,13 @@ import javax.swing.*;
  * Main class for the bouncers application, registers the main displayer instance and
  * starts the main loop inside AWT's event queue.
  *
+ * The application creates a window with a black background and listens for key events.
+ * The user can press 'b' to create new bouncers with a stroke, 'f' to create new bouncers
+ * with a fill, 'e' to clear the screen and 'q' to exit the application. The bouncers
+ * move around the screen and bounce off the edges of the window. The application uses
+ * the singleton pattern to ensure that only one instance of the displayer is created,
+ * and the factory method pattern to create new shapes.
+ * 
  * @author Loïc Herman
  * @author Massimo Stefani
  * @version 1.0
